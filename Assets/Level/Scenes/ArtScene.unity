@@ -159,13 +159,13 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -561,7 +561,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 249781b4a8d97c542b1017a7a572165d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1816213
+      value: -1.864
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 249781b4a8d97c542b1017a7a572165d,
         type: 3}
@@ -571,22 +571,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 249781b4a8d97c542b1017a7a572165d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.007972367
+      value: -2.48
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 249781b4a8d97c542b1017a7a572165d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.9927574
+      value: 0.8901878
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 249781b4a8d97c542b1017a7a572165d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 249781b4a8d97c542b1017a7a572165d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.120136715
+      value: -0.4555938
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 249781b4a8d97c542b1017a7a572165d,
         type: 3}
@@ -601,7 +601,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 249781b4a8d97c542b1017a7a572165d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -373.8
+      value: -54.206
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 249781b4a8d97c542b1017a7a572165d,
         type: 3}
@@ -813,7 +813,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006335754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.322, y: 1.424, z: -1.588}
+  m_LocalPosition: {x: -3.322, y: 2.685, z: -1.588}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

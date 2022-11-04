@@ -399,7 +399,7 @@ Material:
     - _Offset_Z: 0
     - _OutlineOverridden: 0
     - _OutlineVisible: 1
-    - _Outline_Width: 10
+    - _Outline_Width: 6
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
     - _PPDMinSamples: 5
@@ -453,7 +453,7 @@ Material:
     - _StencilWriteMaskDistortionVec: 64
     - _StencilWriteMaskGBuffer: 3
     - _StencilWriteMaskMV: 128
-    - _StepOffset: 0
+    - _StepOffset: 0.5
     - _SubsurfaceMask: 1
     - _SupportDecals: 1
     - _Surface: 0
@@ -485,7 +485,7 @@ Material:
     - _UVBase: 0
     - _UVDetail: 0
     - _UVEmissive: 0
-    - _Unlit_Intensity: 2.01
+    - _Unlit_Intensity: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
     - _Use_1stAs2nd: 1
@@ -506,7 +506,7 @@ Material:
     - _utsVersionY: 8
     - _utsVersionZ: 1
     m_Colors:
-    - _1st_ShadeColor: {r: 0.5613342, g: 0.46902812, b: 0.6415094, a: 1}
+    - _1st_ShadeColor: {r: 0.47058824, g: 0.48798385, b: 0.6431373, a: 1}
     - _2nd_ShadeColor: {r: 0.3301887, g: 0.30765328, b: 0.3068263, a: 1}
     - _AngelRingMaskColor: {r: 0, g: 1, b: 0, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
