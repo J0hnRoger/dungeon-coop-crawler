@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace dcc
 {
@@ -7,25 +8,55 @@ namespace dcc
     {
         [SerializeField] private bool _isOnline = true;
         [SerializeField] private Rigidbody _rb;
+        [SerializeField] private float _speed = 5;
+        
+        private PlayerControls _playerControls;
+        private InputAction _moveAction;
+        private InputAction _lookAction;
 
-        [SerializeField] private InputAction _playerInputs; 
-        private void Update()
+        private void Awake()
+        {
+            _playerControls = new PlayerControls();
+        }
+
+        private void OnEnable()
+        {
+            _playerControls.Enable();
+            _moveAction = _playerControls.FindAction("move");
+            _lookAction = _playerControls.FindAction("look");
+        }
+
+
+        private void OnDisable()
+        {
+            _playerControls.Disable();
+        }
+        
+        private void FixedUpdate()
         {
             if (_isOnline && !IsOwner)
                 return;
-            
-            GatherInput();
-            // SimpleMove();
+
+            Move();
+            Look();
         }
 
-        private void FixedUpdate()
+        private void Look()
         {
-            
+           // check mouse position 
+           Vector2 lookInput = _lookAction.ReadValue<Vector2>();
+           Vector3 lookDirection = new Vector3(lookInput.x, 0, lookInput.y); 
+           Vector3 worldPosition = Camera.main.ScreenToWorldPoint(lookDirection);
+           Debug.DrawLine(Camera.main.transform.position, worldPosition);
+           // rotate caracter 
+           // _rb.transform.LookAt(worldPosition);
         }
 
-        private void GatherInput()
+        private void Move()
         {
-            // read values  
+          Vector2 input = _moveAction.ReadValue<Vector2>();
+          Vector3 direction = new Vector3(input.x, 0, input.y);
+          _rb.MovePosition(transform.position + direction * _speed * Time.deltaTime);
         }
 
         private void SimpleMove()
