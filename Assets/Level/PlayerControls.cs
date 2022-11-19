@@ -49,7 +49,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""look"",
                     ""type"": ""Value"",
                     ""id"": ""c4368012-4a98-40e9-8a96-19aea969b8fc"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Delta"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -59,7 +59,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9a816be3-8c89-4d2d-99e4-41f20ea84655"",
-                    ""path"": ""<Mouse>/position"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

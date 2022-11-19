@@ -9,11 +9,15 @@ namespace dcc
         [SerializeField] private bool _isOnline = true;
         [SerializeField] private Rigidbody _rb;
         [SerializeField] private float _speed = 5;
+        [SerializeField] private float _mouseSmoothTime = 0.03f;
         
         private PlayerControls _playerControls;
         private InputAction _moveAction;
         private InputAction _lookAction;
-
+        private Vector2 currentMouseDelta = Vector2.zero;
+        private Vector2 currentMouseDeltaVelocity = Vector2.zero;
+        private float _cameraPitch = 0.0f;
+        
         private void Awake()
         {
             _playerControls = new PlayerControls();
@@ -25,7 +29,6 @@ namespace dcc
             _moveAction = _playerControls.FindAction("move");
             _lookAction = _playerControls.FindAction("look");
         }
-
 
         private void OnDisable()
         {
@@ -45,6 +48,14 @@ namespace dcc
         {
            // check mouse position 
            Vector2 lookInput = _lookAction.ReadValue<Vector2>();
+           
+           currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, lookInput, ref currentMouseDeltaVelocity, _mouseSmoothTime);
+
+           
+           _cameraPitch = Mathf.Clamp(_cameraPitch, -90.0f, 90.0f);  
+           
+           transform.Rotate(Vector3.up * currentMouseDelta.x * 3.5f);
+           
            Vector3 lookDirection = new Vector3(lookInput.x, 0, lookInput.y); 
            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(lookDirection);
            Debug.DrawLine(Camera.main.transform.position, worldPosition);
