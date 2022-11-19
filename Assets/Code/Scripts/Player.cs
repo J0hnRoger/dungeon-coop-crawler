@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +9,7 @@ namespace DungeonCoop
     {
         [SerializeField] private bool _isOnline = true;
         [SerializeField] private Rigidbody _rb;
+        [SerializeField] private Animator _animator;
         [SerializeField] private float _speed = 5;
         [SerializeField] private float _rotationSpeed = 10;
         [SerializeField] private float _mouseSmoothTime = 0.03f;
@@ -85,6 +87,7 @@ namespace DungeonCoop
 
             Quaternion desiredRotation = Quaternion.LookRotation(dir);
             _rb.rotation = Quaternion.Slerp(_rb.rotation, desiredRotation, _rotationSpeed * Time.deltaTime);
+            _animator.SetFloat("Angular", Quaternion.Angle(_rb.rotation, desiredRotation));
         }
 
         private void Move()
@@ -92,6 +95,7 @@ namespace DungeonCoop
             Vector2 input = _moveAction.ReadValue<Vector2>();
             Vector3 direction = new Vector3(input.x, 0, input.y);
             _rb.MovePosition(transform.position + direction * _speed * Time.deltaTime);
+            _animator.SetFloat("Speed", direction.sqrMagnitude);
         }
     }
 }

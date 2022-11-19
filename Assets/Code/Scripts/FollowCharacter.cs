@@ -6,7 +6,6 @@ namespace DungeonCoop
     public class FollowCharacter: MonoBehaviour 
     {
         private Camera _camera;
-        [SerializeField] private float _centeredZ = -13;
         private Transform _playerTransform; 
         
         // cached transform of the target
