@@ -16,13 +16,13 @@ namespace DungeonCoop
         private PlayerControls _playerControls;
         private InputAction _moveAction;
         private InputAction _lookAction;
-        private Vector2 currentMouseDelta = Vector2.zero;
-        private Vector2 currentMouseDeltaVelocity = Vector2.zero;
         private float _cameraPitch = 0.0f;
 
         private void Awake()
         {
             _playerControls = new PlayerControls();
+            if (_isOnline && IsOwner || !_isOnline)
+                _camera.GetComponent<FollowCharacter>().SetFollowedPlayer(transform);
         }
 
         private void OnEnable()
@@ -43,7 +43,7 @@ namespace DungeonCoop
                 return;
 
             Move();
-            RotateTowardCamera();
+            Look();
         }
         
         /// <summary>
@@ -62,7 +62,7 @@ namespace DungeonCoop
             return Vector3.zero;
         }
         
-        private void RotateTowardCamera()
+        private void Look()
         {
             var mousePosition = _lookAction.ReadValue<Vector2>();
             // On tourne le personnage vers la souris - on affecte la hauteur du personnage comme point de rep�re  
@@ -87,42 +87,11 @@ namespace DungeonCoop
             _rb.rotation = Quaternion.Slerp(_rb.rotation, desiredRotation, _rotationSpeed * Time.deltaTime);
         }
 
-        private void Look()
-        {
-            // check mouse position 
-            Vector2 lookInput = _lookAction.ReadValue<Vector2>();
-
-            currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, lookInput, ref currentMouseDeltaVelocity,
-                _mouseSmoothTime);
-
-            _cameraPitch = Mathf.Clamp(_cameraPitch, -90.0f, 90.0f);
-
-            transform.Rotate(Vector3.up * currentMouseDelta.x * 3.5f);
-
-            Vector3 lookDirection = new Vector3(lookInput.x, 0, lookInput.y);
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(lookDirection);
-            Debug.DrawLine(Camera.main.transform.position, worldPosition);
-            // rotate caracter 
-            _rb.transform.LookAt(worldPosition);
-        }
-
         private void Move()
         {
             Vector2 input = _moveAction.ReadValue<Vector2>();
             Vector3 direction = new Vector3(input.x, 0, input.y);
             _rb.MovePosition(transform.position + direction * _speed * Time.deltaTime);
-        }
-
-        private void SimpleMove()
-        {
-            Vector3 moveDir = new Vector3(0, 0, 0);
-            if (Input.GetKey(KeyCode.Z)) moveDir.z = +1f;
-            if (Input.GetKey(KeyCode.S)) moveDir.z = -1f;
-            if (Input.GetKey(KeyCode.Q)) moveDir.x = -1f;
-            if (Input.GetKey(KeyCode.D)) moveDir.x = +1f;
-
-            float moveSpeed = 6f;
-            transform.position += moveDir * moveSpeed * Time.deltaTime;
         }
     }
 }
